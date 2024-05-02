@@ -31,6 +31,7 @@ st.set_page_config(page_title="Stroke Prediction App", page_icon="🧠")
 st.markdown(
     """
     <style>
+    
     .header {
         font-size: 40px;
         font-weight: bold;
@@ -51,6 +52,9 @@ st.markdown(
     .success {
         color: #2ecc71;
     }
+    .spacing {
+        margin-bottom: -20px;
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -62,48 +66,46 @@ st.write("This app predicts your risk of stroke based on the provided informatio
 # User input section
 st.markdown('<div class="subheader">Enter your details</div>', unsafe_allow_html=True)
 
-col1, col2 = st.columns(2)
 
-with col1:
-    age = st.number_input("Age", min_value=1, max_value=100, value=25)
-    weight = st.number_input("Weight (kg)", min_value=20.0, max_value=200.0, value=70.0, format="%.2f")
-    height = st.number_input(
-        "Height (meters)", min_value=0.5, max_value=2.5, value=1.75
+age = st.number_input("Age", min_value=1, max_value=100, value=25)
+weight = st.number_input(
+    "Weight (kg)", min_value=20.0, max_value=200.0, value=70.0, format="%.2f"
+)
+height = st.number_input("Height (meters)", min_value=0.5, max_value=2.5, value=1.75)
+bmi = weight / (height**2)
+st.write(f"BMI: {bmi:.2f}")
+
+
+col2_1, col2_2, col2_3 = st.columns(3)
+
+with col2_1:
+    hypertension = st.radio("Hypertension", ["No", "Yes"])
+
+with col2_2:
+    heart_disease = st.radio("Heart disease", ["No", "Yes"])
+
+with col2_3:
+    ever_married = st.radio("Ever married", ["No", "Yes"])
+
+work_type = st.selectbox(
+    "Work type",
+    ["Government job", "Never worked", "Private", "Self-employed", "Children"],
+)
+
+# Add a checkbox for unknown glucose level
+unknown_glucose = st.checkbox("Glucose level unknown")
+
+# Display the input field for average glucose level if the checkbox is not checked
+if not unknown_glucose:
+    avg_glucose_level = st.number_input(
+        "Average Glucose Level (mg/dL)",
+        min_value=50.0,
+        max_value=300.0,
+        value=80.0,
+        help="A normal glucose level is between 70 to 99 mg/dL",
     )
-    bmi = weight / (height**2)
-    st.write(f"BMI: {bmi:.2f}")
-
-with col2:
-    col2_1, col2_2, col2_3 = st.columns(3)
-    
-    with col2_1:
-        hypertension = st.radio("Hypertension", ["No", "Yes"])
-    
-    with col2_2:
-        heart_disease = st.radio("Heart disease", ["No", "Yes"])
-    
-    with col2_3:    
-        ever_married = st.radio("Ever married", ["No", "Yes"])
-    
-    work_type = st.selectbox(
-        "Work type",
-        ["Government job", "Never worked", "Private", "Self-employed", "Children"],
-    )
-    
-    # Add a checkbox for unknown glucose level
-    unknown_glucose = st.checkbox("Glucose level unknown")
-
-    # Display the input field for average glucose level if the checkbox is not checked
-    if not unknown_glucose:
-        avg_glucose_level = st.number_input(
-            "Average Glucose Level (mg/dL)",
-            min_value=50.0,
-            max_value=300.0,
-            value=80.0,
-            help="A normal glucose level is between 70 to 99 mg/dL",
-        )
-    else:
-        avg_glucose_level = np.nan
+else:
+    avg_glucose_level = np.nan
 
 # Add an expander with additional information
 with st.expander("Learn more about stroke risk factors"):
