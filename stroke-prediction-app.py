@@ -55,6 +55,14 @@ st.markdown(
     .spacing {
         margin-bottom: -20px;
     }
+    @media screen and (max-width: 600px) {
+        .header {
+            font-size: 24px;
+        }
+        .subheader {
+        font-size: 16px;
+    }
+    }
     </style>
     """,
     unsafe_allow_html=True,
