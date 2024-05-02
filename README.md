@@ -2,7 +2,7 @@
 
 This repository contains a Stroke Prediction App that uses machine learning to predict the risk of stroke based on various health and demographic factors. The app is built using Streamlit, a Python library for creating interactive web applications.
 
-### Visit the app in production here: [https://stroke-prediction-app.streamlit.app/](https://stroke-prediction-app.streamlit.app/)
+#### Visit the app in production here: [https://stroke-prediction-app.streamlit.app/](https://stroke-prediction-app.streamlit.app/)
 
 ## Table of Contents
 
