@@ -13,7 +13,6 @@ This repository contains a Stroke Prediction App that uses machine learning to p
 - [Model](#model)
 - [App](#app)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
